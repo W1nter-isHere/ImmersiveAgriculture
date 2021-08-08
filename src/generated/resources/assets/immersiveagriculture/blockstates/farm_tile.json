@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "immersiveagriculture:block/farm_tile"
+    },
+    "moisture=1": {
+      "model": "immersiveagriculture:block/farm_tile"
+    },
+    "moisture=2": {
+      "model": "immersiveagriculture:block/farm_tile"
+    },
+    "moisture=3": {
+      "model": "immersiveagriculture:block/farm_tile"
+    },
+    "moisture=4": {
+      "model": "immersiveagriculture:block/farm_tile"
+    },
+    "moisture=5": {
+      "model": "immersiveagriculture:block/farm_tile"
+    },
+    "moisture=6": {
+      "model": "immersiveagriculture:block/farm_tile"
+    },
+    "moisture=7": {
+      "model": "immersiveagriculture:block/farm_tile_moist"
+    }
+  }
+}

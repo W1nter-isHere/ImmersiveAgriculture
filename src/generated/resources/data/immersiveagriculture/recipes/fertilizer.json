@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SBS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:sand/colorless"
+    },
+    "B": {
+      "tag": "immersiveagriculture:mold_crops"
+    }
+  },
+  "result": {
+    "item": "immersiveagriculture:fertilizer",
+    "count": 8
+  }
+}

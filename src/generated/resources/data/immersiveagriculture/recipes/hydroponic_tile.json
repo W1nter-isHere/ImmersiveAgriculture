@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IOI",
+    "DFD",
+    "IOI"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/gold"
+    },
+    "F": {
+      "item": "immersiveagriculture:farm_tile"
+    },
+    "O": {
+      "item": "immersiveagriculture:wooden_mesh"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "immersiveagriculture:hydroponic_tile",
+    "count": 2
+  }
+}

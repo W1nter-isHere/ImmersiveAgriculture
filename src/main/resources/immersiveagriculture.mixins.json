@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "wintersteve25.immersiveagriculture.common.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "immersiveagriculture.refmap.json",
+  "mixins": [
+    "BlockMixin",
+    "CropBlockMixin",
+    "FarmlandBlockMixin"
+  ],
+  "server": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

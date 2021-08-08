@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "Hydroponic Tile",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "immersiveagriculture:hydroponic_tile"
+        }
+      ]
+    }
+  ]
+}

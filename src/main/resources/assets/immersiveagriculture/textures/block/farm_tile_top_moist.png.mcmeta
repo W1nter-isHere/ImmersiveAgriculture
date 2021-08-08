@@ -1,0 +1,13 @@
+{
+	"ctm": {
+		"ctm_version": 1,
+		"type": "ctm",
+		"layer": "CUTOUT",
+		"textures": [ "immersiveagriculture:block/farm_tile_top_moist_ctm" ],
+		"extra": {
+			"connect_to": [
+				{ "block": "immersiveagriculture:farm_tile" }
+			]
+		}
+	}
+}

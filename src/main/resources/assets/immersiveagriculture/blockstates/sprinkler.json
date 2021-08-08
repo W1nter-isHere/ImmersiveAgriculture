@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "immersiveagriculture:block/sprinkler"
+    },
+    "facing=south": {
+      "y": 180,
+      "model": "immersiveagriculture:block/sprinkler"
+    },
+    "facing=west": {
+      "y": 270,
+      "model": "immersiveagriculture:block/sprinkler"
+    },
+    "facing=east": {
+      "y": 90,
+      "model": "immersiveagriculture:block/sprinkler"
+    },
+    "facing=up": {
+      "model": "immersiveagriculture:block/sprinkler"
+    },
+    "facing=down": {
+      "model": "immersiveagriculture:block/sprinkler"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "immersiveagriculture:hydroponic_tile"
+    ]
+  },
+  "criteria": {
+    "has_farmtile": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "immersiveagriculture:farm_tile"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "immersiveagriculture:hydroponic_tile"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_farmtile",
+      "has_the_recipe"
+    ]
+  ]
+}

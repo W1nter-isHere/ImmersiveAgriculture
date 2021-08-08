@@ -1,0 +1,9 @@
+{
+  "parent": "immersiveagriculture:block/top_differ_block",
+  "textures": {
+    "particle": "immersiveagriculture:block/farm_tile",
+    "bottom": "immersiveagriculture:block/farm_tile",
+    "top": "immersiveagriculture:block/farm_tile_top_moist",
+    "side": "immersiveagriculture:block/farm_tile_side"
+  }
+}

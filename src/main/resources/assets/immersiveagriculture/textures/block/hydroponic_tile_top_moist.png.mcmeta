@@ -1,0 +1,14 @@
+{
+	"ctm": {
+		"ctm_version": 1,
+		"type": "ctm",
+		"layer": "CUTOUT",
+		"textures": [ "immersiveagriculture:block/hydroponic_tile_top_moist_ctm" ],
+		"extra": {
+			"connect_to": [
+				{ "block": "immersiveagriculture:hydroponic_tile" }
+			],
+			"ignore_states": true
+		}
+	}
+}

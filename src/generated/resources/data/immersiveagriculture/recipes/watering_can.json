@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  I",
+    "IFI",
+    "CIC"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "F": {
+      "item": "immersiveagriculture:fertilizer"
+    },
+    "C": {
+      "tag": "forge:dyes/green"
+    }
+  },
+  "result": {
+    "item": "immersiveagriculture:watering_can"
+  }
+}

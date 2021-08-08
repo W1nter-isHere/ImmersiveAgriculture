@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "FDF",
+    "ICI"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "F": {
+      "item": "immersiveagriculture:fertilizer"
+    },
+    "C": {
+      "item": "immersiveagriculture:wooden_mesh"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "immersiveagriculture:farm_tile",
+    "count": 4
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "immersiveagriculture:block/top_differ_block",
+  "textures": {
+    "particle": "immersiveagriculture:block/hydroponic_tile",
+    "bottom": "immersiveagriculture:block/hydroponic_tile",
+    "top": "immersiveagriculture:block/hydroponic_tile_top_moist",
+    "side": "immersiveagriculture:block/hydroponic_tile_side"
+  }
+}

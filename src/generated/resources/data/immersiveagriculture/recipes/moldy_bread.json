@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "immersiveagriculture:moldy_wheat"
+    }
+  },
+  "result": {
+    "item": "immersiveagriculture:moldy_bread"
+  }
+}

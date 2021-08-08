@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "immersiveagriculture:watering_can"
+    ]
+  },
+  "criteria": {
+    "has_fertilizer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "immersiveagriculture:fertilizer"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "immersiveagriculture:watering_can"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fertilizer",
+      "has_the_recipe"
+    ]
+  ]
+}
