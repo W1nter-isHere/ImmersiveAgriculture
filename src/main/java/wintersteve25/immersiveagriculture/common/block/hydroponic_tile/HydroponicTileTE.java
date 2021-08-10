@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 public class HydroponicTileTE extends FCLibTE {
 
-    private final FluidTank fluidTank = new FluidTank(1000) {
+    private final FluidTank fluidTank = new FluidTank(4000) {
         @Override
         protected void onContentsChanged() {
             HydroponicTileTE.super.updateBlock();

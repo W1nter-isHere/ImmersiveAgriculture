@@ -2,6 +2,8 @@ package wintersteve25.immersiveagriculture.client.renderers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -23,17 +25,35 @@ public class SprinklerRenderer extends GeoBlockRenderer<SprinklerTE> {
 
     public static class SprinklerModel extends AnimatedGeoModel<SprinklerTE> {
         @Override
-        public ResourceLocation getModelLocation(SprinklerTE sprinklerBlockItem) {
+        public ResourceLocation getModelLocation(SprinklerTE te) {
+            if (te.getWorld() != null) {
+                BlockState state = te.getWorld().getBlockState(te.getPos());
+                switch (state.get(HorizontalFaceBlock.FACE)) {
+                    case WALL:
+                        return new ResourceLocation(ImmersiveAgriculture.MODID, "geo/sprinkler_wall.geo.json");
+                    case CEILING:
+                        return new ResourceLocation(ImmersiveAgriculture.MODID, "geo/sprinkler_ceiling.geo.json");
+                }
+            }
             return new ResourceLocation(ImmersiveAgriculture.MODID, "geo/sprinkler.geo.json");
         }
 
         @Override
-        public ResourceLocation getTextureLocation(SprinklerTE sprinklerBlockItem) {
+        public ResourceLocation getTextureLocation(SprinklerTE te) {
             return new ResourceLocation(ImmersiveAgriculture.MODID, "textures/block/sprinkler.png");
         }
 
         @Override
-        public ResourceLocation getAnimationFileLocation(SprinklerTE sprinklerBlockItem) {
+        public ResourceLocation getAnimationFileLocation(SprinklerTE te) {
+            if (te.getWorld() != null) {
+                BlockState state = te.getWorld().getBlockState(te.getPos());
+                switch (state.get(HorizontalFaceBlock.FACE)) {
+                    case WALL:
+                        return new ResourceLocation(ImmersiveAgriculture.MODID, "animations/sprinkler_wall.animation.json");
+                    default:
+                        return new ResourceLocation(ImmersiveAgriculture.MODID, "animations/sprinkler_ceiling.animation.json");
+                }
+            }
             return new ResourceLocation(ImmersiveAgriculture.MODID, "animations/sprinkler.animation.json");
         }
     }

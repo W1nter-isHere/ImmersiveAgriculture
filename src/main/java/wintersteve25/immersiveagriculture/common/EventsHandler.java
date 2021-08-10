@@ -7,6 +7,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -28,6 +30,7 @@ public class EventsHandler {
         ImmersiveAgriculture.registerCommands(event.getDispatcher());
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void clientInit(FMLClientSetupEvent event) {
         ClientRegistry.bindTileEntityRenderer(IABlocks.SPRINKLER_TE.get(), SprinklerRenderer::new);
     }

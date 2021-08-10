@@ -1,25 +1,61 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "immersiveagriculture:block/sprinkler"
-    },
-    "facing=south": {
-      "y": 180,
-      "model": "immersiveagriculture:block/sprinkler"
-    },
-    "facing=west": {
+    "face=ceiling,facing=east,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
       "y": 270,
-      "model": "immersiveagriculture:block/sprinkler"
+      "x": 180
     },
-    "facing=east": {
+    "face=ceiling,facing=north,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "y": 180,
+      "x": 180
+    },
+    "face=ceiling,facing=south,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "x": 180
+    },
+    "face=ceiling,facing=west,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
       "y": 90,
+      "x": 180
+    },
+    "face=floor,facing=east,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "y": 90
+    },
+    "face=floor,facing=north,powered=false": {
       "model": "immersiveagriculture:block/sprinkler"
     },
-    "facing=up": {
-      "model": "immersiveagriculture:block/sprinkler"
+    "face=floor,facing=south,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "y": 180
     },
-    "facing=down": {
-      "model": "immersiveagriculture:block/sprinkler"
+    "face=floor,facing=west,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "y": 270
+    },
+    "face=wall,facing=east,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "y": 90,
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=north,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=south,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "y": 180,
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=west,powered=false": {
+      "model": "immersiveagriculture:block/sprinkler",
+      "y": 270,
+      "x": 90,
+      "uvlock": true
     }
   }
 }

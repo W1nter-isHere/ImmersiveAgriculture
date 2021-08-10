@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
 
 public class SprinklerTE extends FCLibTE implements ITickableTileEntity, IAnimatable {
 
-    private final FluidTank fluidTank = new FluidTank(16000) {
+    private final FluidTank fluidTank = new FluidTank(1000) {
         @Override
         protected void onContentsChanged() {
             SprinklerTE.super.updateBlock();

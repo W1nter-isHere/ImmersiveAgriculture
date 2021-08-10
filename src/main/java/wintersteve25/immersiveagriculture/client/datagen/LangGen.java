@@ -36,8 +36,8 @@ public class LangGen {
             add("immersiveagriculture.tooltips.fertilizer", TextFormatting.GRAY + "Fertilizer can be used on \"Farm Tiles\" and \"Hydroponic Tiles\" to increase fertilization level in the tiles \nIt can also be used in the fertilization station to automatically fertilize the tiles");
             add("immersiveagriculture.tooltips.watering_can", TextFormatting.GRAY + "Watering can be filled by shift-right click water source blocks. When used around farmland blocks it will moisture the block and boost crop growth speed for a tiny bit");
             add("immersiveagriculture.tooltips.farm_tile", TextFormatting.GRAY + "An upgraded version of the vanilla Farmland. Enables fertilizers. Right click fertilizers to increase the fertilization level of the tile");
-            add("immersiveagriculture.tooltips.hydroponic_tile", TextFormatting.GRAY + "An upgraded version of Farm Tiles, allow player to put fluids inside the tile in order to meet the requirement of some crops");
-            add("immersiveagriculture.tooltips.sprinkler", TextFormatting.GRAY + "The Sprinkler works in a " + IAConfigs.SPRINKLER_RANGE.get()+ "x" + IAConfigs.SPRINKLER_RANGE.get() + " range, moistures farmlands in range when provided water and power");
+            add("immersiveagriculture.tooltips.hydroponic_tile", TextFormatting.GRAY + "An upgraded version of Farm Tiles, allow player to put fluids inside the tile in order to meet the requirement of some crops. Shift right-click the block to check contained fluids");
+            add("immersiveagriculture.tooltips.sprinkler", TextFormatting.GRAY + "The Sprinkler works in a " + IAConfigs.SPRINKLER_RANGE.get()+ "x" + IAConfigs.SPRINKLER_RANGE.get() + " range, moistures farmlands in range when provided water and power. Shift right-click the block to check contained fluids");
         }
         private void autoGenLang() {
             for (IFCItem item : IAItems.ItemList) {
