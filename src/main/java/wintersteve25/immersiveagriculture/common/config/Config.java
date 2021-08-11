@@ -19,6 +19,10 @@ public class Config implements IJsonConfigBase {
         PrintWriter writer;
         File file = new File(directory.getPath() + File.separator + "immersiveagriculture.json");
 
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
         if (!file.exists()) {
             try {
                 writer = new PrintWriter(file);
@@ -42,6 +46,10 @@ public class Config implements IJsonConfigBase {
 
     public static void printExample() {
         PrintWriter writer;
+
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
 
         try {
             writer = new PrintWriter(directory.getPath() + File.separator + "immersiveagriculture_example.json");

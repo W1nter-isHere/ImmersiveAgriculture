@@ -1,5 +1,6 @@
 package wintersteve25.immersiveagriculture.client.datagen;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -35,6 +36,7 @@ public class RecipeGen extends RecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(IAItems.WATERING_CAN_ITEM, 1).key('I', Tags.Items.INGOTS_IRON).key('F', IAItems.FERTILIZER).key('C', Tags.Items.DYES_GREEN).patternLine("  I").patternLine("IFI").patternLine("CIC").addCriterion("has_fertilizer", hasItem(IAItems.FERTILIZER)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(IAItems.WOODEN_MESH).key('S', Tags.Items.RODS_WOODEN).patternLine("SSS").patternLine("SSS").patternLine("SSS").addCriterion("has_stick", hasItem(Tags.Items.RODS_WOODEN)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(IAItems.MOLDED_BREAD).key('W', IAItems.MOLDED_WHEAT).patternLine("WWW").addCriterion("has_mold_wheat", hasItem(IAItems.MOLDED_WHEAT)).build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(IABlocks.SPRINKLER_BLOCK).key('I', Tags.Items.INGOTS_IRON).key('W', IAItems.WATERING_CAN_ITEM).key('P', ItemTags.PLANKS).key('S', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE).patternLine("ISI").patternLine("PWP").patternLine("ISI").addCriterion("has_wateringcan", hasItem(IAItems.WATERING_CAN_ITEM)).build(consumer);
     }
 
     private void scytheRecipe(IItemProvider scythe, ITag<Item> material, Consumer<IFinishedRecipe> consumer) {

@@ -2,13 +2,12 @@ package wintersteve25.immersiveagriculture.common.block.sprinkler;
 
 import fictioncraft.wintersteve25.fclib.common.helper.VoxelShapeHelper;
 import fictioncraft.wintersteve25.fclib.common.interfaces.IFCDataGenObject;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFaceBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -22,6 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -62,6 +62,8 @@ public class SprinklerBlock extends HorizontalFaceBlock implements IFCDataGenObj
     private static final VoxelShape SOUTH_UP = VoxelShapeHelper.rotate(UP, Rotation.CLOCKWISE_180);
     private static final VoxelShape EAST_UP = VoxelShapeHelper.rotate(UP, Rotation.CLOCKWISE_90);
     private static final VoxelShape WEST_UP = VoxelShapeHelper.rotate(UP, Rotation.COUNTERCLOCKWISE_90);
+
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public SprinklerBlock(Properties properties) {
         super(properties);
@@ -148,6 +150,46 @@ public class SprinklerBlock extends HorizontalFaceBlock implements IFCDataGenObj
 
     @Override
     public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+//    @Nullable
+//    @Override
+//    public BlockState getStateForPlacement(BlockItemUseContext context) {
+//        FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
+//        boolean flag = fluidstate.getFluid() == Fluids.WATER;
+//
+//        for(Direction direction : context.getNearestLookingDirections()) {
+//            BlockState blockstate;
+//            if (direction.getAxis() == Direction.Axis.Y) {
+//                blockstate = this.getDefaultState().with(FACE, direction == Direction.UP ? AttachFace.CEILING : AttachFace.FLOOR).with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing()).with(WATERLOGGED, flag);
+//            } else {
+//                blockstate = this.getDefaultState().with(FACE, AttachFace.WALL).with(HORIZONTAL_FACING, direction.getOpposite()).with(WATERLOGGED, flag);
+//            }
+//
+//            if (blockstate.isValidPosition(context.getWorld(), context.getPos())) {
+//                return blockstate.with(WATERLOGGED, flag);
+//            }
+//        }
+//
+//        return null;
+//    }
+//
+//    @Override
+//    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+//        if (stateIn.get(WATERLOGGED)) {
+//            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+//        }
+//        return getFacing(stateIn).getOpposite() == facing && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+//    }
+//
+//    @Override
+//    public FluidState getFluidState(BlockState state) {
+//        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : this.getFluidState(state);
+//    }
+
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         return true;
     }
 

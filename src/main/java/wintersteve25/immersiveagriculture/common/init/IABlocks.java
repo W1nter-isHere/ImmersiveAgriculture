@@ -29,10 +29,10 @@ public class IABlocks {
     public static final FarmTileBlockItem FARM_TILE_BLOCK_ITEM = new FarmTileBlockItem();
     public static final HydroponicTileBlock HYDROPONIC_TILE = new HydroponicTileBlock(AbstractBlock.Properties.create(Material.EARTH).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1F, 1.5F).tickRandomly());
     public static final HydroponicTileBlockItem HYDROPONIC_TILE_BLOCK_ITEM = new HydroponicTileBlockItem();
-    public static final RegistryObject<TileEntityType<HydroponicTileTE>> HYDROPONIC_TILE_TE = RegistryHelper.registerTE(MiscHelper.langToReg(HYDROPONIC_TILE.regName()), () -> TileEntityType.Builder.create(HydroponicTileTE::new, HYDROPONIC_TILE).build(null));
+    public static final RegistryObject<TileEntityType<HydroponicTileTE>> HYDROPONIC_TILE_TE = RegistryHelper.registerTE(MiscHelper.langToReg(HYDROPONIC_TILE.regName()), HydroponicTileTE::new, HYDROPONIC_TILE);
     public static final SprinklerBlock SPRINKLER_BLOCK = new SprinklerBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2F, 4F).setRequiresTool().notSolid());
     public static final SprinklerBlockItem SPRINKLER_BLOCK_ITEM = new SprinklerBlockItem();
-    public static final RegistryObject<TileEntityType<SprinklerTE>> SPRINKLER_TE = RegistryHelper.registerTE(MiscHelper.langToReg(SPRINKLER_BLOCK.regName()), () -> TileEntityType.Builder.create(SprinklerTE::new, SPRINKLER_BLOCK).build(null));
+    public static final RegistryObject<TileEntityType<SprinklerTE>> SPRINKLER_TE = RegistryHelper.registerTE(MiscHelper.langToReg(SPRINKLER_BLOCK.regName()), SprinklerTE::new, SPRINKLER_BLOCK);
 
     public static final List<IFCDataGenObject<Block>> BlockList = new ArrayList<>();
     public static final Map<IFCDataGenObject<Block>, FCLibBlockItem> BlockMap = new HashMap<>();

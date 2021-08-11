@@ -89,7 +89,6 @@ public class WateringCanItem extends ItemFluidContainer implements IFCItem, IHas
                 if (FluidUtil.getFluidHandler(result).resolve().isPresent()) {
                     FluidUtil.getFluidHandler(result).resolve().get().drain(100, IFluidHandler.FluidAction.EXECUTE);
                 }
-//                result = FluidUtil.tryEmptyContainer(itemStack, FluidUtil.getFluidHandler(itemStack).resolve().get(), 100, null, true).getResult();
                 world.playSound((PlayerEntity) null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.PLAYERS, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
             }
         }

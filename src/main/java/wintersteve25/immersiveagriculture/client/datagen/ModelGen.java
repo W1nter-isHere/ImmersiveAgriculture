@@ -11,8 +11,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import software.bernie.geckolib3.core.IAnimatable;
 import wintersteve25.immersiveagriculture.ImmersiveAgriculture;
 import wintersteve25.immersiveagriculture.common.init.IABlocks;
-import wintersteve25.immersiveagriculture.common.items.IFCItem;
 import wintersteve25.immersiveagriculture.common.init.IAItems;
+import wintersteve25.immersiveagriculture.common.items.IFCItem;
+import wintersteve25.immersiveagriculture.common.items.ScytheItem;
 
 public class ModelGen extends ItemModelProvider {
     public ModelGen(DataGenerator generator, ExistingFileHelper existingFileHelper) {
@@ -33,7 +34,11 @@ public class ModelGen extends ItemModelProvider {
     private void autoGenModels(ModelFile parent) {
         for (IFCItem item : IAItems.ItemList) {
             if (!(item.ogItem() instanceof IAnimatable)) {
-                builder(parent, MiscHelper.langToReg(item.regName()));
+                if (item.ogItem() instanceof ScytheItem) {
+                    builder(getExistingFile(modLoc("item/scythe_base")), MiscHelper.langToReg(item.regName()));
+                } else {
+                    builder(parent, MiscHelper.langToReg(item.regName()));
+                }
             }
         }
         for (IFCDataGenObject<Block> block : IABlocks.BlockList) {

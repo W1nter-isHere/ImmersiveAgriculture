@@ -31,7 +31,7 @@ public class SprinklerBlockItem extends FCLibBlockItem implements IHasToolTip, I
     @Override
     public List<ITextComponent> tooltip() {
         List<ITextComponent> list = new ArrayList<>();
-        list.add(new TranslationTextComponent("immersiveagriculture.tooltips.sprinkler"));
+        list.add(new TranslationTextComponent("immersiveagriculture.tooltips.sprinkler", IAConfigs.SPRINKLER_RANGE.get().toString()));
         return list;
     }
 

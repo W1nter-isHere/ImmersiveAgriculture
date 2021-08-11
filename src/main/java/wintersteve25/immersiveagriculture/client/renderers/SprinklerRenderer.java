@@ -45,15 +45,6 @@ public class SprinklerRenderer extends GeoBlockRenderer<SprinklerTE> {
 
         @Override
         public ResourceLocation getAnimationFileLocation(SprinklerTE te) {
-            if (te.getWorld() != null) {
-                BlockState state = te.getWorld().getBlockState(te.getPos());
-                switch (state.get(HorizontalFaceBlock.FACE)) {
-                    case WALL:
-                        return new ResourceLocation(ImmersiveAgriculture.MODID, "animations/sprinkler_wall.animation.json");
-                    default:
-                        return new ResourceLocation(ImmersiveAgriculture.MODID, "animations/sprinkler_ceiling.animation.json");
-                }
-            }
             return new ResourceLocation(ImmersiveAgriculture.MODID, "animations/sprinkler.animation.json");
         }
     }

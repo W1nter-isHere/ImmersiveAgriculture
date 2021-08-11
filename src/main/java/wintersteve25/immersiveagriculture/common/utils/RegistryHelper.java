@@ -2,13 +2,13 @@ package wintersteve25.immersiveagriculture.common.utils;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Effect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;
 import wintersteve25.immersiveagriculture.ImmersiveAgriculture;
 
@@ -35,11 +35,11 @@ public class RegistryHelper {
         return Registration.ENCHANTMENT.register(name, enchantment);
     }
 
-    public static <I extends TileEntityType<?>> RegistryObject<I> registerTE(String name, Supplier<? extends I> te) {
-        return Registration.TE.register(name, te);
+    public static <I extends TileEntity> RegistryObject<TileEntityType<I>> registerTE(String name, Supplier<I> te, Block block) {
+        return Registration.TE.register(name, () -> TileEntityType.Builder.create(te, block).build(null));
     }
 
-    public static <I extends ContainerType<?>> RegistryObject<I> registerContainer(String name, Supplier<? extends I> container) {
-        return Registration.CONTAINER.register(name, container);
+    public static <I extends Entity> RegistryObject<EntityType<I>> registerEntity(String name, EntityType.IFactory<I> entity, float xSize, float ySize) {
+        return Registration.ENTITY.register(name, () -> EntityType.Builder.create(entity, EntityClassification.MISC).size(xSize, ySize).build(name));
     }
 }

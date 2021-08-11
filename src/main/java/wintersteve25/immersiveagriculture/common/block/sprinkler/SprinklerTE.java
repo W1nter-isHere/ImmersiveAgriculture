@@ -1,5 +1,6 @@
 package wintersteve25.immersiveagriculture.common.block.sprinkler;
 
+import fictioncraft.wintersteve25.fclib.common.base.FCEnergyStorage;
 import fictioncraft.wintersteve25.fclib.common.base.FCLibTE;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluids;
@@ -22,7 +23,6 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-import wintersteve25.immersiveagriculture.common.block.FCEnergyStorage;
 import wintersteve25.immersiveagriculture.common.config.IAConfigs;
 import wintersteve25.immersiveagriculture.common.init.IABlocks;
 import wintersteve25.immersiveagriculture.common.utils.Utils;
@@ -44,35 +44,60 @@ public class SprinklerTE extends FCLibTE implements ITickableTileEntity, IAnimat
     private final AnimationFactory manager = new AnimationFactory(this);
 
     private int operationTicks = IAConfigs.SPRINKLER_OPERATION_LENGTH.get();
+    public boolean working;
 
     public SprinklerTE() {
         super(IABlocks.SPRINKLER_TE.get());
         fluidTank.setValidator((fluid) -> fluid.getFluid() == Fluids.WATER);
     }
 
+    //progress = cool down between operations
+    //operation ticks = ticks that the sprinkler actually operates
     @Override
     public void tick() {
         if (!world.isRemote()) {
-            if (fluidTank.getFluid().isFluidEqual(new FluidStack(Fluids.WATER, 1000))) {
-                if (fluidTank.getFluidAmount() > IAConfigs.SPRINKLER_CONSUME_WATER_AMOUNT.get()) {
-                    if (energyStorage.getEnergyStored() > IAConfigs.SPRINKLER_OPERATION_POWER.get()) {
-                        setWorking(false);
-                        progress--;
-                        if (progress <= 0) {
-                            setWorking(true);
-                            operationTicks--;
-                            energyStorage.extractEnergy(IAConfigs.SPRINKLER_OPERATION_POWER.get(), false);
-                            fluidTank.drain(IAConfigs.SPRINKLER_CONSUME_WATER_AMOUNT.get(), IFluidHandler.FluidAction.EXECUTE);
-                            Utils.water(world, pos.getX(), pos.getY() + 0.5, pos.getZ() + 0.5, IAConfigs.SPRINKLER_RANGE.get());
-                            if (operationTicks <= 0) {
-                                setWorking(false);
-                                setProgress(this.progress());
-                                operationTicks = IAConfigs.SPRINKLER_OPERATION_LENGTH.get();
+            if (!world.isBlockPowered(this.pos)) {
+                if (fluidTank.getFluid().isFluidEqual(new FluidStack(Fluids.WATER, 1000))) {
+                    if (fluidTank.getFluidAmount() >= IAConfigs.SPRINKLER_CONSUME_WATER_AMOUNT.get()) {
+                        if (energyStorage.getEnergyStored() > IAConfigs.SPRINKLER_OPERATION_POWER.get()) {
+                            if (progress > 0) {
+                                progress--;
+                                working = false;
+                                if (progress <= 0) {
+                                    working = true;
+                                    operationTicks = IAConfigs.SPRINKLER_OPERATION_LENGTH.get();
+                                }
+                            } else {
+                                if (!working) {
+                                    progress = progress();
+                                }
                             }
+
+                            if (operationTicks > 0) {
+                                working = true;
+                                operationTicks--;
+                                energyStorage.extractEnergy(IAConfigs.SPRINKLER_OPERATION_POWER.get(), false);
+                                fluidTank.drain(IAConfigs.SPRINKLER_CONSUME_WATER_AMOUNT.get(), IFluidHandler.FluidAction.EXECUTE);
+                                Utils.water(world, pos.getX(), pos.getY() + 0.5, pos.getZ() + 0.5, IAConfigs.SPRINKLER_RANGE.get());
+                                if (operationTicks <= 0) {
+                                    working = false;
+                                }
+                            }
+                            markDirty();
+                        } else {
+                            working = false;
                         }
+                    } else {
+                        working = false;
                     }
+                } else {
+                    working = false;
                 }
+            } else {
+                working = false;
             }
+        } else {
+            working = false; //janky but works :/
         }
     }
 
@@ -80,6 +105,8 @@ public class SprinklerTE extends FCLibTE implements ITickableTileEntity, IAnimat
     public void read(BlockState state, CompoundNBT tag) {
         fluidTank.readFromNBT(tag.getCompound("tank"));
         energyStorage.read(tag.getCompound("energy"));
+        operationTicks = tag.getInt("operationTicks");
+        working = tag.getBoolean("working");
         super.read(state, tag);
     }
 
@@ -89,6 +116,8 @@ public class SprinklerTE extends FCLibTE implements ITickableTileEntity, IAnimat
         fluidTank.writeToNBT(nbt);
         tag.put("tank", nbt);
         tag.put("energy", energyStorage.write());
+        tag.putInt("operationTicks", operationTicks);
+        tag.putBoolean("working", working);
         return super.write(tag);
     }
 
@@ -109,8 +138,8 @@ public class SprinklerTE extends FCLibTE implements ITickableTileEntity, IAnimat
     }
 
     private <E extends TileEntity & IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        event.getController().transitionLengthTicks = 80;
-        if (super.getWorking()) {
+        event.getController().transitionLengthTicks = 0;
+        if (working) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("sprinkler.work", true));
             return PlayState.CONTINUE;
         } else {

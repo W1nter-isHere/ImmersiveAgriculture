@@ -4,7 +4,7 @@ import fictioncraft.wintersteve25.fclib.common.helper.MiscHelper;
 import fictioncraft.wintersteve25.fclib.common.interfaces.IFCDataGenObject;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,16 +15,16 @@ import wintersteve25.immersiveagriculture.ImmersiveAgriculture;
 import wintersteve25.immersiveagriculture.common.enchantment.IFCEnchantment;
 import wintersteve25.immersiveagriculture.common.init.IABlocks;
 import wintersteve25.immersiveagriculture.common.init.IAEnchantments;
+import wintersteve25.immersiveagriculture.common.init.IAItems;
 import wintersteve25.immersiveagriculture.common.init.IATags;
 import wintersteve25.immersiveagriculture.common.items.IFCItem;
-import wintersteve25.immersiveagriculture.common.init.IAItems;
 
 public class Registration {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ImmersiveAgriculture.MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ImmersiveAgriculture.MODID);
     public static final DeferredRegister<Enchantment> ENCHANTMENT = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ImmersiveAgriculture.MODID);
     public static final DeferredRegister<TileEntityType<?>> TE = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, ImmersiveAgriculture.MODID);
-    public static final DeferredRegister<ContainerType<?>> CONTAINER = DeferredRegister.create(ForgeRegistries.CONTAINERS, ImmersiveAgriculture.MODID);
+    public static final DeferredRegister<EntityType<?>> ENTITY = DeferredRegister.create(ForgeRegistries.ENTITIES, ImmersiveAgriculture.MODID);
 
     public static void init() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -33,7 +33,7 @@ public class Registration {
         ITEMS.register(eventBus);
         ENCHANTMENT.register(eventBus);
         TE.register(eventBus);
-        CONTAINER.register(eventBus);
+        ENTITY.register(eventBus);
 
         IAItems.register();
         registerItems();

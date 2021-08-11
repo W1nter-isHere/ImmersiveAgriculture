@@ -1,6 +1,6 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/block",
   "textures": {
-    "particle": "immersiveagriculture:block/sprinkler"
+    "all": "immersiveagriculture:block/sprinkler"
   }
 }
