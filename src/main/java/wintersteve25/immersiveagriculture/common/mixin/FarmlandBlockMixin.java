@@ -38,10 +38,12 @@ public abstract class FarmlandBlockMixin {
         if (!worldIn.isRemote()) {
             int i = state.get(MOISTURE);
             if (!hasWater(worldIn, pos) && !worldIn.isRainingAt(pos.up())) {
-                if (i > 0) {
-                    worldIn.setBlockState(pos, state.with(MOISTURE, Integer.valueOf(i - 1)), 2);
-                } else if (!hasCrops(worldIn, pos)) {
-                    turnToDirt(state, worldIn, pos);
+                if (MiscHelper.chanceHandling(IAConfigs.CHANCE_DE_MOIST.get())) {
+                    if (i > 0) {
+                        worldIn.setBlockState(pos, state.with(MOISTURE, Integer.valueOf(i - 1)), 2);
+                    } else if (!hasCrops(worldIn, pos)) {
+                        turnToDirt(state, worldIn, pos);
+                    }
                 }
             } else if (i < 7) {
                 worldIn.setBlockState(pos, state.with(MOISTURE, Integer.valueOf(i++)), 2);

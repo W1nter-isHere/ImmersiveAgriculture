@@ -15,14 +15,15 @@ public class IAItems {
     public static final ScytheItem GOLD_SCYTHE = new ScytheItem(ItemTier.GOLD, -3.2F, 6);
     public static final ScytheItem DIAMOND_SCYTHE = new ScytheItem(ItemTier.DIAMOND, -3.2F, 6);
     public static final ScytheItem NETHERITE_SCYTHE = new ScytheItem(ItemTier.NETHERITE, -3.2F, 6);
-    public static final WateringCanItem WATERING_CAN_ITEM = new WateringCanItem();
+    public static final WateringCanItem WATERING_CAN_ITEM = new WateringCanItem(4000, false);
+    public static final WateringCanItem WATERING_CAN_ITEM_ADVANCED = new WateringCanItem(16000, true);
 
     public static final FertilizerItem FERTILIZER = new FertilizerItem(new Item.Properties().group(ImmersiveAgriculture.creativeTab), "Fertilizer");
     public static final BasicItem WOODEN_MESH = new BasicItem(new Item.Properties().group(ImmersiveAgriculture.creativeTab), "Wooden Mesh");
     public static final BasicItem MOLDED_WHEAT = new BasicItem(new Item.Properties().food(IAFoods.BAD_WHEAT).group(ImmersiveAgriculture.creativeTab), "Moldy Wheat");
     public static final BasicItem MOLDED_BREAD = new BasicItem(new Item.Properties().food(IAFoods.BAD_BREAD).group(ImmersiveAgriculture.creativeTab), "Moldy Bread");
 
-//    public static final FertilizerCartItem FERTILIZER_CART = new FertilizerCartItem(new Item.Properties().group(ImmersiveAgriculture.creativeTab));
+    public static final FertilizerCartItem FERTILIZER_CART = new FertilizerCartItem(new Item.Properties().group(ImmersiveAgriculture.creativeTab));
 
     public static final List<IFCItem> ItemList = new ArrayList<>();
 
@@ -34,10 +35,11 @@ public class IAItems {
         DIAMOND_SCYTHE.initItem();
         NETHERITE_SCYTHE.initItem();
         WATERING_CAN_ITEM.initItem();
+        WATERING_CAN_ITEM_ADVANCED.initItem();
         MOLDED_WHEAT.initItem();
         MOLDED_BREAD.initItem();
         FERTILIZER.initItem();
         WOODEN_MESH.initItem();
-//        FERTILIZER_CART.initItem();
+        FERTILIZER_CART.initItem();
     }
 }

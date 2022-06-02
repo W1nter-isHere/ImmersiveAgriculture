@@ -1,5 +1,6 @@
 package wintersteve25.immersiveagriculture.common.utils;
 
+import fictioncraft.wintersteve25.fclib.common.helper.MiscHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -40,6 +41,6 @@ public class RegistryHelper {
     }
 
     public static <I extends Entity> RegistryObject<EntityType<I>> registerEntity(String name, EntityType.IFactory<I> entity, float xSize, float ySize) {
-        return Registration.ENTITY.register(name, () -> EntityType.Builder.create(entity, EntityClassification.MISC).size(xSize, ySize).build(name));
+        return Registration.ENTITY.register(name, () -> EntityType.Builder.create(entity, EntityClassification.MISC).size(xSize, ySize).build(MiscHelper.langToReg(name)));
     }
 }

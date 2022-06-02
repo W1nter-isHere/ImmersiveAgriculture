@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  I",
+    "IFI",
+    "CIC"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:gems/diamond"
+    },
+    "F": {
+      "item": "immersiveagriculture:fertilizer"
+    },
+    "C": {
+      "tag": "forge:dyes/green"
+    }
+  },
+  "result": {
+    "item": "immersiveagriculture:advanced_watering_can"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "immersiveagriculture:sprinkler"
+    ]
+  },
+  "criteria": {
+    "has_wateringcan": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "immersiveagriculture:watering_can"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "immersiveagriculture:sprinkler"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wateringcan",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -13,10 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import wintersteve25.immersiveagriculture.ImmersiveAgriculture;
 import wintersteve25.immersiveagriculture.common.enchantment.IFCEnchantment;
-import wintersteve25.immersiveagriculture.common.init.IABlocks;
-import wintersteve25.immersiveagriculture.common.init.IAEnchantments;
-import wintersteve25.immersiveagriculture.common.init.IAItems;
-import wintersteve25.immersiveagriculture.common.init.IATags;
+import wintersteve25.immersiveagriculture.common.init.*;
 import wintersteve25.immersiveagriculture.common.items.IFCItem;
 
 public class Registration {
@@ -42,6 +39,7 @@ public class Registration {
         IABlocks.register();
         registerBlocks();
         IATags.register();
+        IAEntities.register();
 
         ImmersiveAgriculture.LOGGER.info("Immersive Agriculture Registration Completed");
     }

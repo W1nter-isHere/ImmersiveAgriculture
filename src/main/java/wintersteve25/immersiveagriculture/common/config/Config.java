@@ -2,7 +2,7 @@ package wintersteve25.immersiveagriculture.common.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import fictioncraft.wintersteve25.fclib.common.interfaces.IJsonConfigBase;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.Level;
 import wintersteve25.immersiveagriculture.ImmersiveAgriculture;
 
@@ -12,16 +12,12 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class Config implements IJsonConfigBase {
+public class Config{
     public static ConfigObject globalConfig;
 
     public static void createConfig() {
         PrintWriter writer;
-        File file = new File(directory.getPath() + File.separator + "immersiveagriculture.json");
-
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
+        File file = new File(FMLPaths.CONFIGDIR.get() + File.separator + "immersiveagriculture.json");
 
         if (!file.exists()) {
             try {
@@ -47,12 +43,8 @@ public class Config implements IJsonConfigBase {
     public static void printExample() {
         PrintWriter writer;
 
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-
         try {
-            writer = new PrintWriter(directory.getPath() + File.separator + "immersiveagriculture_example.json");
+            writer = new PrintWriter(FMLPaths.CONFIGDIR.get() + File.separator + "immersiveagriculture_example.json");
         } catch (Exception e) {
             ImmersiveAgriculture.LOGGER.log(Level.ERROR, "Exception when trying to create example config");
             e.printStackTrace();
@@ -72,7 +64,7 @@ public class Config implements IJsonConfigBase {
     }
 
     public static void read() {
-        File file = new File(directory.getPath() + File.separator + "immersiveagriculture.json");
+        File file = new File(FMLPaths.CONFIGDIR.get() + File.separator + "immersiveagriculture.json");
         if (!file.exists()) {
             ImmersiveAgriculture.LOGGER.info("Immersive Agriculture config not found! Creating a new one..");
             createConfig();

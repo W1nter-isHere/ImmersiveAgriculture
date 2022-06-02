@@ -1,7 +1,7 @@
 package wintersteve25.immersiveagriculture.common.compat.jei;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import fictioncraft.wintersteve25.fclib.client.renderer.RenderingHelper;
+import fictioncraft.wintersteve25.fclib.client.rendering.RenderingHelper;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -64,7 +64,6 @@ public class CropCategory implements IRecipeCategory<CropRecipe> {
     public CropCategory(IGuiHelper iGuiHelper) {
         background = iGuiHelper.createDrawable(new ResourceLocation(ImmersiveAgriculture.MODID, "textures/gui/crop_jei_empty.png"), 0, 0, 170, 110);
         tabIcon = iGuiHelper.createDrawableIngredient(new ItemStack(Items.WHEAT_SEEDS));
-
         this.iGuiHelper = iGuiHelper;
     }
 

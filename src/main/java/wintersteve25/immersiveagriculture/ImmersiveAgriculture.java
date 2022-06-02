@@ -15,10 +15,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import wintersteve25.immersiveagriculture.common.EventsHandler;
 import wintersteve25.immersiveagriculture.common.IAReloadCommand;
 import wintersteve25.immersiveagriculture.common.config.Config;
 import wintersteve25.immersiveagriculture.common.config.IAConfigs;
+import wintersteve25.immersiveagriculture.common.events.ServerEventsHandler;
 import wintersteve25.immersiveagriculture.common.init.IAItems;
 import wintersteve25.immersiveagriculture.common.utils.Registration;
 
@@ -31,17 +31,21 @@ public class ImmersiveAgriculture {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         final IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
+        LOGGER.info("Hallo! :D");
+
         Registration.init();
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, IAConfigs.SERVER_CONFIG);
         Config.createConfig();
         if (IAConfigs.PRINT_EXAMPLE.get()) {
             Config.printExample();
         }
-        Config.read();
 
-        modEventBus.addListener(EventsHandler::clientInit);
-        forgeEventBus.addListener(EventsHandler::registerCommandsInit);
-        forgeEventBus.addListener(EventsHandler::onCropGrowth);
+        modEventBus.addListener(ServerEventsHandler::entityAttributeEvent);
+        forgeEventBus.addListener(ServerEventsHandler::registerCommandsInit);
+        forgeEventBus.addListener(ServerEventsHandler::onCropGrowth);
+        forgeEventBus.addListener(ServerEventsHandler::onBonemeal);
+        forgeEventBus.addListener(ServerEventsHandler::serverStart);
 
         forgeEventBus.register(this);
     }
@@ -54,9 +58,7 @@ public class ImmersiveAgriculture {
     };
 
     public static void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
-        LiteralArgumentBuilder<CommandSource> requires = Commands.literal("ia").requires((commandSource) -> {
-            return commandSource.hasPermissionLevel(3);
-        });
+        LiteralArgumentBuilder<CommandSource> requires = Commands.literal("ia").requires((commandSource) -> commandSource.hasPermissionLevel(3));
         LiteralCommandNode<CommandSource> source = dispatcher.register(requires.then(IAReloadCommand.register(dispatcher)));
         dispatcher.register(Commands.literal("ia").redirect(source));
         dispatcher.register(Commands.literal("immersiveagriculture").redirect(source));

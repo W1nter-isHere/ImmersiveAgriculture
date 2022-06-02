@@ -1,0 +1,6 @@
+{
+  "parent": "immersiveagriculture:item/scythe_base",
+  "textures": {
+    "layer0": "immersiveagriculture:item/stone_scythe"
+  }
+}

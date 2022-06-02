@@ -51,6 +51,7 @@ public class LangGen {
             for (IFCDataGenObject<Block> block : IABlocks.BlockMap.keySet()) {
                 add("block.immersiveagriculture." + MiscHelper.langToReg(block.regName()), block.regName());
             }
+            add("entity.immersiveagriculture.fertilizer_cart", "Fertilizer Cart");
         }
     }
 }

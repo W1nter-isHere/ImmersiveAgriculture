@@ -9,6 +9,7 @@ public class IAConfigs {
     public static ForgeConfigSpec SERVER_CONFIG;
 
     public static ForgeConfigSpec.IntValue CHANCE_WITHOUT_SCYTHE;
+    public static ForgeConfigSpec.IntValue CHANCE_DE_MOIST;
     public static ForgeConfigSpec.IntValue CHANCE_CONSUME_WATER;
     public static ForgeConfigSpec.IntValue SPRINKLER_CONSUME_WATER_AMOUNT;
     public static ForgeConfigSpec.IntValue SPRINKLER_OPERATION_TIME;
@@ -21,8 +22,9 @@ public class IAConfigs {
         ForgeConfigSpec.Builder SERVERBUILDER = new ForgeConfigSpec.Builder();
 
         SERVERBUILDER.comment("General").push(CAT_GENERAL);
-        CHANCE_WITHOUT_SCYTHE = SERVERBUILDER.comment("Chance to obtain the drop from the crop without using a scythe").defineInRange("chanceWithoutScythe", 35, 0, MiscHelper.INT_MAX);
-        CHANCE_CONSUME_WATER = SERVERBUILDER.comment("Chance for water to be consumed by moisturing farmlands").defineInRange("chanceConsumeWater", 60, 0, MiscHelper.INT_MAX);
+        CHANCE_WITHOUT_SCYTHE = SERVERBUILDER.comment("Chance to obtain the drop from the crop without using a scythe").defineInRange("chanceWithoutScythe", 35, 0, 100);
+        CHANCE_DE_MOIST = SERVERBUILDER.comment("Chance of farmland getting de-moisted").defineInRange("demoistChance", 60, 0, 100);
+        CHANCE_CONSUME_WATER = SERVERBUILDER.comment("Chance for water to be consumed by moisturing farmlands").defineInRange("chanceConsumeWater", 60, 0, 100);
         SPRINKLER_CONSUME_WATER_AMOUNT = SERVERBUILDER.comment("The amount of water (mb) that is consumed every sprinkler operation").defineInRange("sprinklerWaterConsumption", 100, 0, MiscHelper.INT_MAX);
         SPRINKLER_OPERATION_TIME = SERVERBUILDER.comment("Ticks between each sprinkler operation").defineInRange("sprinklerTickOperation", 100, 1, MiscHelper.INT_MAX);
         SPRINKLER_OPERATION_POWER = SERVERBUILDER.comment("Power taken each tick during each sprinkler operation").defineInRange("sprinklerPowerOperation", 16, 0, MiscHelper.INT_MAX);

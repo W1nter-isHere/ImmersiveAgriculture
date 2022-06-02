@@ -1,0 +1,99 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"fertilizer_cart.start": {
+			"animation_length": 0.375,
+			"bones": {
+				"body": {
+					"rotation": {
+						"0.0417": {
+							"vector": [0, 0, 0]
+						},
+						"0.375": {
+							"vector": [-15, 0, 0],
+							"easing": "easeOutExpo"
+						}
+					}
+				},
+				"handles": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.3333": {
+							"vector": [20, 0, 0],
+							"easing": "easeOutExpo"
+						}
+					}
+				}
+			}
+		},
+		"fertilizer_cart.move": {
+			"animation_length": 0.70833,
+			"bones": {
+				"wheel": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [25, 0, 0]
+						},
+						"0.3333": {
+							"vector": [60, 0, 0]
+						},
+						"0.4583": {
+							"vector": [90, 0, 0]
+						},
+						"0.5417": {
+							"vector": [120, 0, 0]
+						},
+						"0.625": {
+							"vector": [150, 0, 0]
+						},
+						"0.7083": {
+							"vector": [180, 0, 0]
+						}
+					}
+				},
+				"wheel2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [25, 0, 0]
+						},
+						"0.3333": {
+							"vector": [60, 0, 0]
+						},
+						"0.4583": {
+							"vector": [90, 0, 0]
+						},
+						"0.5417": {
+							"vector": [120, 0, 0]
+						},
+						"0.625": {
+							"vector": [150, 0, 0]
+						},
+						"0.7083": {
+							"vector": [180, 0, 0]
+						}
+					}
+				},
+				"body": {
+					"rotation": {
+						"vector": [-15, 0, 0],
+						"easing": "easeOutExpo"
+					}
+				},
+				"handles": {
+					"rotation": {
+						"vector": [20, 0, 0],
+						"easing": "easeOutExpo"
+					}
+				}
+			}
+		}
+	}
+}

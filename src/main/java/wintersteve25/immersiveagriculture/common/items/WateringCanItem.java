@@ -1,10 +1,13 @@
 package wintersteve25.immersiveagriculture.common.items;
 
 import fictioncraft.wintersteve25.fclib.common.interfaces.IHasToolTip;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -19,6 +22,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.ItemFluidContainer;
+import wintersteve25.immersiveagriculture.common.init.IAItems;
 import wintersteve25.immersiveagriculture.common.utils.Utils;
 
 import javax.annotation.Nullable;
@@ -27,10 +31,13 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class WateringCanItem extends ItemFluidContainer implements IFCItem, IHasToolTip {
-    private static final int capacity = 4000;
+    private final int capacity;
+    private final boolean adv;
 
-    public WateringCanItem() {
+    public WateringCanItem(int capacity, boolean advanced) {
         super(Utils.BaseItemProperties.maxDamage(4000), capacity);
+        this.capacity = capacity;
+        this.adv = advanced;
     }
 
     @Override
@@ -57,7 +64,7 @@ public class WateringCanItem extends ItemFluidContainer implements IFCItem, IHas
             if (playerIn.isSneaking()) {
                 if (state.getMaterial() == Material.WATER) {
                     if (FluidUtil.getFluidContained(wateringCan).isPresent()) {
-                        if (FluidUtil.getFluidContained(wateringCan).get().getAmount()+1000 > capacity) {
+                        if (FluidUtil.getFluidContained(wateringCan).get().getAmount() + 1000 > capacity) {
                             return ActionResult.resultPass(wateringCan);
                         }
                     }
@@ -68,7 +75,7 @@ public class WateringCanItem extends ItemFluidContainer implements IFCItem, IHas
 
                     return ActionResult.resultSuccess(result.getResult());
                 }
-            } else if (!playerIn.isSneaking()){
+            } else if (!playerIn.isSneaking()) {
                 if (!state.isAir()) {
                     return ActionResult.resultSuccess(activate(wateringCan, worldIn, playerIn, pos.getPos()));
                 }
@@ -97,8 +104,16 @@ public class WateringCanItem extends ItemFluidContainer implements IFCItem, IHas
     }
 
     @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.isInGroup(group) && !adv) {
+            items.add(new ItemStack(IAItems.WATERING_CAN_ITEM));
+            items.add(new ItemStack(IAItems.WATERING_CAN_ITEM_ADVANCED));
+        }
+    }
+
+    @Override
     public String regName() {
-        return "Watering Can";
+        return adv ? "Advanced Watering Can" : "Watering Can";
     }
 
     @Override
@@ -111,5 +126,14 @@ public class WateringCanItem extends ItemFluidContainer implements IFCItem, IHas
         List<ITextComponent> list = new ArrayList<>();
         list.add(new TranslationTextComponent("immersiveagriculture.tooltips.watering_can"));
         return list;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        if (Screen.hasShiftDown()) {
+            tooltip.addAll(this.tooltip());
+        } else {
+            tooltip.add(new TranslationTextComponent("fclib.shiftInfo"));
+        }
     }
 }

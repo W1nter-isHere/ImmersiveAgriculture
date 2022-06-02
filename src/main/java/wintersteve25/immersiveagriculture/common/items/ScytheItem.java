@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
@@ -14,6 +13,8 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import wintersteve25.immersiveagriculture.ImmersiveAgriculture;
+import wintersteve25.immersiveagriculture.api.events.IAHooks;
+import wintersteve25.immersiveagriculture.api.events.ScytheHarvestEvent;
 import wintersteve25.immersiveagriculture.common.init.IAEnchantments;
 import wintersteve25.immersiveagriculture.common.utils.Utils;
 
@@ -44,33 +45,36 @@ public class ScytheItem extends ToolItem implements IFCItem {
                         if (state.getBlock() instanceof CropsBlock) {
                             CropsBlock crop = (CropsBlock) state.getBlock();
                             if (crop.isMaxAge(world.getBlockState(pos))) {
-                                int bonus = EnchantmentHelper.getEnchantmentLevel(IAEnchantments.FARMER_LUCK, context.getItem());
-                                Utils.harvest(world, state, pos, context, bonus);
+                                ScytheHarvestEvent event = IAHooks.onScytheHarvestCancel(context);
+                                if (!event.isCanceled()) {
+                                    int bonus = EnchantmentHelper.getEnchantmentLevel(IAEnchantments.FARMER_LUCK, context.getItem());
+                                    Utils.harvest(world, state, pos, context, bonus);
+                                    context.getPlayer().addExhaustion(0.4F);
+                                    world.playSound(null, context.getPlayer().getPosX(), context.getPlayer().getPosY(), context.getPlayer().getPosZ(), SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+                                    context.getItem().damageItem(1, context.getPlayer(), (item) -> item.sendBreakAnimation(context.getHand()));
 
-                                world.playSound((PlayerEntity)null, context.getPlayer().getPosX(), context.getPlayer().getPosY(), context.getPlayer().getPosZ(), SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-                                context.getItem().damageItem(1, context.getPlayer(), (item) -> item.sendBreakAnimation(context.getHand()));
-
-                                switch ((ItemTier) getTier()) {
-                                    case WOOD:
-                                        context.getPlayer().getCooldownTracker().setCooldown(getItem(), 40);
-                                        break;
-                                    case STONE:
-                                        context.getPlayer().getCooldownTracker().setCooldown(getItem(), 35);
-                                        break;
-                                    case IRON:
-                                        context.getPlayer().getCooldownTracker().setCooldown(getItem(), 30);
-                                        break;
-                                    case GOLD:
-                                        context.getPlayer().getCooldownTracker().setCooldown(getItem(), 10);
-                                        break;
-                                    case DIAMOND:
-                                        context.getPlayer().getCooldownTracker().setCooldown(getItem(), 15);
-                                        break;
-                                    case NETHERITE:
-                                        context.getPlayer().getCooldownTracker().setCooldown(getItem(), 12);
-                                        break;
+                                    switch ((ItemTier) getTier()) {
+                                        case WOOD:
+                                            context.getPlayer().getCooldownTracker().setCooldown(getItem(), 40);
+                                            break;
+                                        case STONE:
+                                            context.getPlayer().getCooldownTracker().setCooldown(getItem(), 35);
+                                            break;
+                                        case IRON:
+                                            context.getPlayer().getCooldownTracker().setCooldown(getItem(), 30);
+                                            break;
+                                        case GOLD:
+                                            context.getPlayer().getCooldownTracker().setCooldown(getItem(), 10);
+                                            break;
+                                        case DIAMOND:
+                                            context.getPlayer().getCooldownTracker().setCooldown(getItem(), 15);
+                                            break;
+                                        case NETHERITE:
+                                            context.getPlayer().getCooldownTracker().setCooldown(getItem(), 12);
+                                            break;
+                                    }
                                 }
-                                return ActionResultType.SUCCESS;
+                                return event.getActionResult();
                             }
                         }
                     } else {

@@ -84,21 +84,13 @@ public class SprinklerTE extends FCLibTE implements ITickableTileEntity, IAnimat
                                 }
                             }
                             markDirty();
-                        } else {
-                            working = false;
+                            return;
                         }
-                    } else {
-                        working = false;
                     }
-                } else {
-                    working = false;
                 }
-            } else {
-                working = false;
             }
-        } else {
-            working = false; //janky but works :/
         }
+        working = false;
     }
 
     @Override
